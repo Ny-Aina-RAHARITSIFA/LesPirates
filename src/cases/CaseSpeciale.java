@@ -11,5 +11,5 @@ public abstract class CaseSpeciale {
 		this.numero = numero;
 	}
 	
-	public abstract void appliquerEffet(IAffichage affichage,Joueur joueur1,Joueur joueur2,De de);
+	public abstract void appliquerEffet(IAffichage affichage,Joueur joueur1,Joueur joueur2,De de1, De de2);
 }

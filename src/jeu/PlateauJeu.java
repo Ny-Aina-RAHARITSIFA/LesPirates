@@ -6,12 +6,12 @@ public class PlateauJeu {
 	private int nbCases = 30;
 	private int nbCasesSpeciales;
 	private De[] des = new De[2];
-	private CaseSpecial[] cases = new CaseSpecial[30];
+	private CaseSpeciale[] cases = new CaseSpeciale[30];
 	
 	public PlateauJeu() {
 		nbCasesSpeciales = 0;
 		for(int i = 0;i<nbCases;i++) {
-			cases[i] = new Case(i+1);
+			cases[i] = new Cases(i+1);
 		}
 		des[0] = new De(6);
 		des[1] = new De(6);

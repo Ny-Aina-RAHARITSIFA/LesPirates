@@ -26,10 +26,10 @@ public class Joueur {
 		pion.setCase(caseFin);
 	}
 	
-	public int lancerDes(De de1, De de2) {
+	public int lancerDes(IAffichage affichage,De de1,De de2) {
 		de1.lancer();
 		de2.lancer();
-		int resultat = de1.getResultat()+ de2.getResultat();
-		return resultat;
+		affichage.afficherResultatDes(de1.getResultat(),de2.getResultat());
+		return de1.getResultat()+ de2.getResultat();
 	}
 }

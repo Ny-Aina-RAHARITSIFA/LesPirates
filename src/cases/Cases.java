@@ -10,5 +10,6 @@ public class Cases extends CaseSpeciale {
 	}
 	
 	@Override
-	public void appliquerEffet(IAffichage affichage,Joueur joueur1,Joueur joueur2,De de) {}
+	public void appliquerEffet(IAffichage affichage,Joueur joueur1,Joueur joueur2,De de1, De de2) {
+	}
 }
