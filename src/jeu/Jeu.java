@@ -4,7 +4,7 @@ import java.util.Scanner;
 import cases.*;
 
 public class Jeu {
-	private int nbJoueurs;
+	private int nbJoueurs=0;
 	private Pion[] pions = new Pion[5];
 	private Joueur[] joueurs = new Joueur[2];
 	private PlateauJeu plateau;
@@ -13,7 +13,6 @@ public class Jeu {
 	public Jeu (IAffichage affichage,PlateauJeu plateau) {
 		this.plateau = plateau;
 		this.affichage = affichage;
-		nbJoueurs = 2;
 		pions[0] = new Pion(Pirate.CAPITAINE_CROCHET);
 		pions[1] = new Pion(Pirate.FLAMEHEART);
 		pions[2] = new Pion(Pirate.JACK_SPARROW);
@@ -27,11 +26,18 @@ public class Jeu {
 		affichage.ecrireNom("joueur 1");
 		String nom = clavier.nextLine();
 		affichage.choisirPirate();
+		for(int i = 0;i<pions.length;i++) {
+				affichage.afficherPirate(i+1,pions[i].getPirate().toString());
+			}
 		int choix = clavier.nextInt();
 		creerJoueur(nom,pions[choix-1]);
 		affichage.ecrireNom("joueur 2");
+		clavier.nextLine();
 		String nom2 = clavier.nextLine();
 		affichage.choisirPirate();
+		for(int i = 0;i<pions.length;i++) {
+			affichage.afficherPirate(i+1,pions[i].getPirate().toString());
+		}
 		int choix2 = clavier.nextInt();
 		if (choix == choix2){
 			System.out.println("Zut, ce pirate est déjà pris !! Le joueur ne peut pas être créé");
@@ -45,6 +51,7 @@ public class Jeu {
 			int joueurActuel = 0;
 			boolean joueurKO = false;
 			boolean jeuFini = false;
+			affichage.decrireContexte();
 			while (!joueurKO && !jeuFini) {
 				Joueur joueur = joueurs[joueurActuel];
 				int caseActuelle = donnerCaseActuelle(joueur);
@@ -73,11 +80,11 @@ public class Jeu {
 			}
 			else{
 				if(donnerCaseActuelle(joueurs[0])==30) {
-					affichage.afficherPirateArrive(joueurs[0].getPion().getPirate().getNom());
+					affichage.afficherPirateArrive(joueurs[0].getPion().getPirate().getNom(),joueurs[1].getPion().getPirate().getNom());
 					affichage.afficherFinJeu(joueurs[0].getNom());
 				}
 				else {
-					affichage.afficherPirateArrive(joueurs[1].getPion().getPirate().getNom());
+					affichage.afficherPirateArrive(joueurs[1].getPion().getPirate().getNom(),joueurs[0].getPion().getPirate().getNom());
 					affichage.afficherFinJeu(joueurs[1].getNom());
 				}
 			}

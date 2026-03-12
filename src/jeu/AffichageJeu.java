@@ -9,6 +9,12 @@ public class AffichageJeu implements IAffichage {
 		System.out.print("\nChoisis ton pirate : ");
 	}
 	
+	public void decrireContexte() {
+		System.out.print("La mer a rejeté deux pirates sur une île sauvage. \n"
+				+ "Prisonniers de ces terres hostiles, ils n'ont qu'un destin possible : un seul quittera l'île. "
+				+ "L'autre deviendra une légende perdue dans le sable.");
+	}
+	
 	public void afficherJoueur(String joueur) {
 		System.out.println("Au tour du joueur "+joueur);
 	}
@@ -49,7 +55,7 @@ public class AffichageJeu implements IAffichage {
 	}
 	
 	public void afficherFinJeu(String joueur) {
-		System.out.println("Bravo ! le joueur "+joueur+" à gagné !\n-------FIN DU JEU------");
+		System.out.println("Bravo ! le joueur "+joueur+" a gagné !\n-------FIN DU JEU------");
 	}
 	
 	
@@ -58,8 +64,8 @@ public class AffichageJeu implements IAffichage {
 	}
 	
 	
-	public void afficherPirateArrive(String pirate) {
-		System.out.println("Le pirate "+pirate+" est arrivé à destination!\n"
-				+ "De grandes aventures l'attendent !");
+	public void afficherPirateArrive(String pirate1, String pirate2) {
+		System.out.println("Le pirate "+pirate1+" a finalement réussi à quitter cette île maudite au détriment de "+pirate2
+				+" qui ne retrouvera malheureusement jamais ses terres.");
 	}
 }

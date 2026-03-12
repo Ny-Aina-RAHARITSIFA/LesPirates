@@ -12,10 +12,10 @@ public class CaseTornade extends CaseSpeciale {
 		int case1 = joueur1.getPion().getCase();
 		int case2 = joueur2.getPion().getCase();
 		if ((0<=case1)&&(case1<=30)) {
-			joueur1.getPion().setCase(case1);
+			joueur1.getPion().setCase(case2);
 		}
 		if ((0<=case2)&&(case2<=30)) {
-			joueur2.getPion().setCase(case2);
+			joueur2.getPion().setCase(case1);
 		}
 	}
 	

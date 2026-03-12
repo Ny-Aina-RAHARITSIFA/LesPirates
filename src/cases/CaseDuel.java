@@ -19,7 +19,7 @@ public class CaseDuel extends CaseSpeciale {
 		}
 		else if(lance1 < lance2) {
 			joueur1.getPion().changerVie(-1);
-			System.out.println("OUUUUF , le pirate "+joueur2.getPion().getPirate().getNom()+" a reçu un coup violent.\n"
+			System.out.println("OUUUUF , le pirate "+joueur1.getPion().getPirate().getNom()+" a reçu un coup violent.\n"
 					+ "Il perd une vie !");
 		}
 	}
