@@ -19,8 +19,6 @@ public class TestPirates {
 		CaseDuel caseD8 = new CaseDuel(28);
 		CaseDuel caseD9 = new CaseDuel(11);
 		CaseDuel caseD10 = new CaseDuel(8);
-		CaseDuel caseD11 = new CaseDuel(12);
-		CaseDuel caseD12 = new CaseDuel(23);
 		CaseTornade caseTo1 = new CaseTornade(15);
 		CaseTornade caseTo2 = new CaseTornade(27);
 		
@@ -29,11 +27,9 @@ public class TestPirates {
 		plateau.ajouterCaseSpeciale(caseD10, 8);
 		plateau.ajouterCaseSpeciale(caseD3, 10);
 		plateau.ajouterCaseSpeciale(caseD9, 11);
-		plateau.ajouterCaseSpeciale(caseD11, 12);
 		plateau.ajouterCaseSpeciale(caseD4, 13);
 		plateau.ajouterCaseSpeciale(caseTo1, 15);
 		plateau.ajouterCaseSpeciale(caseD5, 20);
-		plateau.ajouterCaseSpeciale(caseD12, 23);
 		plateau.ajouterCaseSpeciale(caseD6, 25);
 		plateau.ajouterCaseSpeciale(caseTo2, 27);
 		plateau.ajouterCaseSpeciale(caseD7, 28);
