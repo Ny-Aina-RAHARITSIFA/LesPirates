@@ -1,7 +1,5 @@
 package jeu;
 
-import java.util.Scanner;
-import cases.*;
 
 public class Jeu {
 	private int nbJoueurs=0;
@@ -10,9 +8,9 @@ public class Jeu {
 	private PlateauJeu plateau;
 	private IAffichage affichage;
 	
-	public Jeu (IAffichage affichage,PlateauJeu plateau) {
-		this.plateau = plateau;
-		this.affichage = affichage;
+	public Jeu (IAffichage affichage) {
+		this.affichage=affichage;
+		plateau = new PlateauJeu();
 		pions[0] = new Pion(Pirate.CAPITAINE_CROCHET);
 		pions[1] = new Pion(Pirate.FLAMEHEART);
 		pions[2] = new Pion(Pirate.JACK_SPARROW);
@@ -22,28 +20,24 @@ public class Jeu {
 	
 	public void demarrerJeu() {
 		boolean choixOK = true;
-		Scanner clavier = new Scanner(System.in);
-		affichage.ecrireNom("joueur 1");
-		String nom = clavier.nextLine();
-		affichage.choisirPirate();
+		String nom =affichage.ecrireNom("joueur 1");;
 		for(int i = 0;i<pions.length;i++) {
 				affichage.afficherPirate(i+1,pions[i].getPirate().toString());
 			}
-		int choix = clavier.nextInt();
+		int choix = affichage.choisirPirate();
+		affichage.afficherNextLine();
 		creerJoueur(nom,pions[choix-1]);
-		affichage.ecrireNom("joueur 2");
-		clavier.nextLine();
-		String nom2 = clavier.nextLine();
-		affichage.choisirPirate();
+		String nom2 = affichage.ecrireNom("joueur 2");
 		for(int i = 0;i<pions.length;i++) {
 			affichage.afficherPirate(i+1,pions[i].getPirate().toString());
 		}
-		int choix2 = clavier.nextInt();
+		int choix2 = affichage.choisirPirate();
 		if (choix == choix2){
-			System.out.println("Zut, ce pirate est déjà pris !! Le joueur ne peut pas être créé");
+			affichage.afficherErreur();
 			choixOK = false;
 		}
 		else {
+			affichage.afficherNextLine();
 			creerJoueur(nom2,pions[choix2-1]);
 		}
 		
@@ -56,18 +50,22 @@ public class Jeu {
 				Joueur joueur = joueurs[joueurActuel];
 				int caseActuelle = donnerCaseActuelle(joueur);
 				affichage.afficherCase(caseActuelle,joueur.getNom(),joueur.getPion().getVie());
-				clavier.next();
+				affichage.afficherNextLine();
 				int sommeDes = joueur.lancerDes(affichage,plateau.getDe1(),plateau.getDe2());
 				joueur.deplacerPion(sommeDes);
 				caseActuelle = donnerCaseActuelle(joueur);
 				String pirate = joueur.getPion().getPirate().getNom();
-				affichage.decrireContexteCase(pirate,caseActuelle, plateau.getCase(caseActuelle).toString());
+				affichage.decrireContexteCase(pirate,caseActuelle);
 				plateau.getCase(caseActuelle).appliquerEffet(affichage,joueurs[0],joueurs[1],plateau.getDe1(), plateau.getDe2());
 				joueurActuel = (joueurActuel + 1)%2;
 				jeuFini = estFini();
 				joueurKO = sontATerre();
+				}
+			trouverGagnant(joueurKO);
 			}
+		}
 			
+		public void trouverGagnant(boolean joueurKO) {	
 			if(joueurKO) {
 				if(joueurs[0].getPion().estATerre()) {
 					affichage.afficherMort(joueurs[0].getPion().getPirate().getNom());
@@ -87,11 +85,8 @@ public class Jeu {
 					affichage.afficherPirateArrive(joueurs[1].getPion().getPirate().getNom(),joueurs[0].getPion().getPirate().getNom());
 					affichage.afficherFinJeu(joueurs[1].getNom());
 				}
-			}
-			clavier.close();
-					
+			}		
 		}
-	}
 	
 	public void creerJoueur(String nom,Pion pion) {
 		joueurs[nbJoueurs] = new Joueur(nom,pion);
