@@ -20,7 +20,7 @@ public class Jeu {
 	
 	public void demarrerJeu() {
 		boolean choixOK = true;
-		String nom =affichage.ecrireNom("joueur 1");;
+		String nom =affichage.ecrireNom("joueur 1");
 		for(int i = 0;i<pions.length;i++) {
 				affichage.afficherPirate(i+1,pions[i].getPirate().toString());
 			}
@@ -46,7 +46,7 @@ public class Jeu {
 			boolean joueurKO = false;
 			boolean jeuFini = false;
 			affichage.decrireContexte();
-			while (!joueurKO && !jeuFini) {
+			do {
 				Joueur joueur = joueurs[joueurActuel];
 				int caseActuelle = donnerCaseActuelle(joueur);
 				affichage.afficherCase(caseActuelle,joueur.getNom(),joueur.getPion().getVie());
@@ -60,7 +60,7 @@ public class Jeu {
 				joueurActuel = (joueurActuel + 1)%2;
 				jeuFini = estFini();
 				joueurKO = sontATerre();
-				}
+				}while (!joueurKO && !jeuFini);
 			trouverGagnant(joueurKO);
 			}
 		}
